@@ -1,3 +1,4 @@
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -6,7 +7,6 @@ import 'package:pinterest/pages/profile_page.dart';
 import 'package:pinterest/pages/search_page.dart';
 import 'package:pinterest/services/grid_View_service.dart';
 import 'package:pinterest/services/http_service.dart';
-
 import 'chat_pages/chat_page.dart';
 
 
@@ -150,6 +150,7 @@ class _HomePageState extends State<HomePage> {
           onTap: (index) {
             setState(() {
               selectedIndex = index;
+              FirebaseCrashlytics.instance.crash();
             });
             _pageController.jumpToPage(selectedIndex);
           },
@@ -168,6 +169,7 @@ class _HomePageState extends State<HomePage> {
                 icon: Icon(CupertinoIcons.search),
                 activeIcon: Icon(CupertinoIcons.search,
                   color: Colors.black,
+
                 ),
                 label: ""),
             BottomNavigationBarItem(

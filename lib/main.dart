@@ -1,5 +1,8 @@
+import 'dart:async';
+
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pinterest/pages/detail_page.dart';
 import 'package:pinterest/pages/profile_page.dart';
@@ -13,9 +16,16 @@ void main() async {
   await Hive.initFlutter();
   await Hive.openBox(HiveDB.DB_NAME);
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
-      .then((_) => runApp(const MyApp()));
+  await Firebase.initializeApp();
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  await runZonedGuarded(() async {
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+    runApp(const MyApp());
+  }, (error, stackTrace) {
+
+    ///crashlist
+    FirebaseCrashlytics.instance.recordError(error, stackTrace);
+  });
 }
 
 class MyApp extends StatelessWidget {

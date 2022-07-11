@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "111328660702",
+    "project_id": "pinterestclon",
+    "storage_bucket": "pinterestclon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:111328660702:android:f5d14a02f1240a6cdb064f",
+        "android_client_info": {
+          "package_name": "com.example.pinterest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "111328660702-nfskp8ofsrbu6gk2kccloju33so5k4ib.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-rNRDY7V9s-9Ydlp2fKqxOoz5fMP1jEA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "111328660702-nfskp8ofsrbu6gk2kccloju33so5k4ib.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

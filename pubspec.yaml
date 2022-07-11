@@ -30,6 +30,8 @@ dependencies:
   path_provider: ^2.0.9
   connectivity_plus: ^2.2.1
   fluttertoast: ^8.0.8
+  firebase_crashlytics: ^2.8.4
+  firebase_core: ^1.19.1
 
 dev_dependencies:
   flutter_test:
@@ -45,7 +47,6 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/share_images/
-    - assets/lottie/
   #   - images/a_dot_ham.jpeg
 
   # fonts:
