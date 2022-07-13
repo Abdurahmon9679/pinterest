@@ -7,6 +7,7 @@ import 'package:pinterest/pages/profile_page.dart';
 import 'package:pinterest/pages/search_page.dart';
 import 'package:pinterest/services/grid_View_service.dart';
 import 'package:pinterest/services/http_service.dart';
+import 'package:pinterest/services/link_service.dart';
 import 'chat_pages/chat_page.dart';
 
 
@@ -21,7 +22,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  String deeplink = 'no link';
+
   int selectedIndex = 0;
+
   final PageController _pageController = PageController();
   bool isLoading = true;
   bool isLoadPage = false;
@@ -67,6 +72,19 @@ class _HomePageState extends State<HomePage> {
         fetchPosts();
       }
     });
+
+    LinkService.retrieveDynamicLink().then((value) =>{
+      setState((){
+       if(value !=null){
+         deeplink =value.toString();
+         ///need to save locally
+       }
+       else{
+         deeplink = "No link";
+       }
+      })
+    });
+
   }
   @override
   void dispose() {
@@ -149,8 +167,9 @@ class _HomePageState extends State<HomePage> {
           currentIndex: selectedIndex,
           onTap: (index) {
             setState(() {
+              LinkService.createLongLink("20000002");
+              //LinkService.createShortLink("100002");
               selectedIndex = index;
-              FirebaseCrashlytics.instance.crash();
             });
             _pageController.jumpToPage(selectedIndex);
           },
